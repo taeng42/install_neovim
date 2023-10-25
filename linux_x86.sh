@@ -46,10 +46,9 @@ git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim \
 	&& git clone https://github.com/taeng42/nvim-config.git $HOME/.config/nvim/lua/user \
 	&& /bin/cp -af $HOME/.config/nvim/lua/user/lsp/config/.clang-format $HOME > /dev/null 2>&1
 
-/bin/rm $NVIM_LOCAL_PATH/bin/glow > /dev/null 2>&1
 curl -L -o glow.tar.gz https://github.com/charmbracelet/glow/releases/download/v1.5.1/glow_Linux_x86_64.tar.gz \
 	&& tar xzvf glow.tar.gz > /dev/null 2>&1 \
-	&& /bin/mv glow $NVIM_LOCAL_PATH/bin/glow > /dev/null 2>&1 
+	&& /bin/cp -af glow $NVIM_LOCAL_PATH/bin/glow > /dev/null 2>&1 
 
 /bin/rm $NVIM_LOCAL_PATH/bin/rg > /dev/null 2>&1
 /bin/mkdir -p rg_tmp > /dev/null 2>&1
