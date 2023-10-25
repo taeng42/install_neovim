@@ -1,10 +1,10 @@
-NVIM_LOCAL_PATH=$HOME/.nvim_local/
-#NVIM_LOCAL_PATH=$HOME/.local/
+NVIM_LOCAL_PATH=$HOME/.nvim_local
+NVIM_PATH=$HOME/nvim-linux
 
 TS=`date +%s`
 
 /bin/mv $NVIM_LOCAL_PATH ${NVIM_LOCAL_PATH}_${TS}.bak
-/bin/mv $HOME/nvim-ubuntu $HOME/nvim-ubuntu_${TS}.bak
+/bin/mv ${NVIM_PATH} ${NVIM_PATH}_${TS}.bak
 /bin/mv $HOME/.cache/nvim $HOME/.cache/nvim_${TS}.bak
 
 /bin/mkdir -p $NVIM_LOCAL_PATH/bin
@@ -28,11 +28,10 @@ curl -L https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.gz -o node.
 	&& /bin/cp -af node_tmp/lib $NVIM_LOCAL_PATH \
 	&& /bin/cp -af node_tmp/share $NVIM_LOCAL_PATH
 
-#curl -L -O https://github.com/neovim/neovim/releases/download/stable/nvim-ubuntu.tar.gz
-curl -L -O https://github.com/neovim/neovim/releases/download/v0.9.2/nvim-linux64.tar.gz \
-	&& xattr -c ./nvim-ubuntu.tar.gz \
-	&& tar xzvf nvim-ubuntu.tar.gz \
-	&& /bin/mv nvim-ubuntu $HOME/nvim-ubuntu
+#curl -L -O https://github.com/neovim/neovim/releases/download/stable/nvim-linux.tar.gz
+curl -L https://github.com/neovim/neovim/releases/download/v0.9.2/nvim-linux64.tar.gz -o nvim-linux64.tar.gz \
+	&& tar xzvf nvim-linux64.tar.gz \
+	&& /bin/mv nvim-linux64 $NVIM_PATH
 
 /bin/mv $HOME/.config/nvim $HOME/.config/nvim_${TS}.bak
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim
@@ -45,9 +44,10 @@ curl -L -o glow.tar.gz https://github.com/charmbracelet/glow/releases/download/v
 #https://github.com/charmbracelet/glow/releases/download/v1.5.1/glow_1.5.1_amd64.deb
 
 
-/bin/rm $NVIM_LOCAL_PATH/bin/rg
+/bin/rm $NVIM_LOCAL_PATH/bin/rg > /dev/null
 mkdir -p rg_tmp
 #/bin/rm $NVIM_LOCAL_PATH/share/
-curl -L -o rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep-12.1.1-x86_64-unknown-linux-musl.tar.gz && tar xzvf rg.tar.gz -c rg_tmp && mv rg_tmp/*/rg $NVIM_LOCAL_PATH/bin/rg 
+curl -L -o rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep-12.1.1-x86_64-unknown-linux-musl.tar.gz && tar xzvf rg.tar.gz -C rg_tmp && mv rg_tmp/*/rg $NVIM_LOCAL_PATH/bin/rg 
 
+bash `dirname $0`/end_msg.sh ${NVIM_LOCAL_PATH}
 rm -rf $HOME/nvim_tmp

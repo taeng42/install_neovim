@@ -1,10 +1,11 @@
 NVIM_LOCAL_PATH=$HOME/.nvim_local/
+NVIM_PATH=$HOME/nvim-macos
 #NVIM_LOCAL_PATH=$HOME/.local/
 
 TS=`date +%s`
 
 /bin/mv $NVIM_LOCAL_PATH ${NVIM_LOCAL_PATH}_${TS}.bak
-/bin/mv $HOME/nvim-macos $HOME/nvim-macos_${TS}.bak
+/bin/mv ${NVIM_PATH} ${NVIM_PATH}_${TS}.bak
 /bin/mv $HOME/.cache/nvim $HOME/.cache/nvim_${TS}.bak
 
 /bin/mkdir -p $NVIM_LOCAL_PATH/bin
@@ -32,7 +33,7 @@ curl -L https://nodejs.org/dist/v18.18.0/node-v18.18.0-darwin-x64.tar.gz -o node
 curl -L -O https://github.com/neovim/neovim/releases/download/v0.9.2/nvim-macos.tar.gz \
 	&& xattr -c ./nvim-macos.tar.gz \
 	&& tar xzvf nvim-macos.tar.gz \
-	&& /bin/mv nvim-macos $HOME/nvim-macos
+	&& /bin/mv nvim-macos $NVIM_PATH
 
 /bin/mv $HOME/.config/nvim $HOME/.config/nvim_${TS}.bak
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim
@@ -44,6 +45,5 @@ curl -L -o glow.tar.gz https://github.com/charmbracelet/glow/releases/download/v
 #https://github.com/charmbracelet/glow/releases/download/v1.5.1/glow_Darwin_arm64.tar.gz
 #https://github.com/charmbracelet/glow/releases/download/v1.5.1/glow_1.5.1_amd64.deb
 
-
-
+bash `dirname $0`/end_msg.sh ${NVIM_LOCAL_PATH}
 rm -rf $HOME/nvim_tmp

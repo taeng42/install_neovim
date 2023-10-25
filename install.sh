@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 ARCH="`uname -m`"
 
 if [[ "$ARCH" == "arm"* ]]; then
@@ -22,6 +24,7 @@ elif [[ "$ARCH" == "x86_64" ]]; then
 		;;
 	linux*)
 		echo "LINUX"
+		bash linux_x86.sh
 		;;
 	win32 | msys* | cygwin*)
 		echo "WINDOWS"
