@@ -7,6 +7,7 @@ if [[ "$ARCH" == "arm"* ]]; then
 	case "$OSTYPE" in
 	darwin*)
 		echo "MacOS"
+		bash darwin_arm.sh
 		;;
 	linux*)
 		echo "LINUX"
