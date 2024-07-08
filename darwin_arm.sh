@@ -42,7 +42,10 @@ curl -L https://github.com/neovim/neovim/releases/download/v0.9.4/nvim-macos.tar
 	&& /bin/cp -af nvim-macos $NVIM_PATH > /dev/null 2>&1
 
 /bin/mv $HOME/.config/nvim $NVIM_BACKUP_PATH/.config/nvim_${TS}.bak > /dev/null 2>&1
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim \
+
+curl -L https://github.com/AstroNvim/AstroNvim/archive/refs/tags/v3.45.3.tar.gz -o astro.tar.gz\
+	&& tar xzvf astro.tar.gz > /dev/null 2>&1 \
+	&& /bin/cp -af AstroNvim-3.45.3 $HOME/.config/nvim > /dev/null 2>&1 \
 	&& git clone https://github.com/taeng42/nvim-config.git $HOME/.config/nvim/lua/user \
 	&& /bin/cp -af $HOME/.config/nvim/lua/user/lsp/config/.clang-format $HOME > /dev/null 2>&1
 
